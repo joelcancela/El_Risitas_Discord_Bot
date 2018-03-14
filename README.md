@@ -13,6 +13,13 @@ node bot
 
 * Invite the bot to your Discord (You must have the *Manage Server* permission) [here.](https://discordapp.com/oauth2/authorize?&client_id=411637700156850176&scope=bot&permissions=0)
 
+* The bot can be hosted using docker :
+
+```
+docker build -t <yourname>/el_risitas_bot .
+docker run -d <yourname>/el_risitas_bot
+```
+
 ## Available commands
 
 * !ah - El Risitas will bring his friend Denis Brogniart.
