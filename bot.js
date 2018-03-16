@@ -24,6 +24,10 @@ bot.on('ready', function (evt) {
     bot.user.setPresence({ game: { name: "!issou", type: 0 } });// Its status
 });
 
+bot.on('error', function (evt) {
+	Logger.error("Error occured : " + evt.message);
+});
+
 // Message parsing
 bot.on('message', response => {
     if (response.content.substr(0, 1) == '!') {// Prefix chosen: !
