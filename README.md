@@ -4,6 +4,10 @@ Just another meme bot for Discord.
 
 ## How to use
 
+* Get a Discord token application [here](https://discordapp.com/developers/applications/me), create a new app and copy your token into the ``token`` value field of ```authTO_EDIT.json```.
+
+* Rename ```authTO_EDIT.json``` to ```auth.json```
+
 * Install Node.js dependencies and launch the bot
 
 ```node
@@ -15,7 +19,7 @@ node bot
 
 * The bot can be hosted using docker :
 
-```
+```bash
 docker build -t <yourname>/el_risitas_bot .
 docker run -d <yourname>/el_risitas_bot
 ```
