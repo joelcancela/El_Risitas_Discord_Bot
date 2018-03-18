@@ -3,7 +3,10 @@
     "version": "1.0.0",
     "description": "El Risitas Discord Bot",
     "main": "bot.js",
-    "author": "SkyFox07",
+    "author": "joelcancela & NassimBounouas",
+    "scripts": {
+        "start": "node bot.js"
+    },
     "dependencies": {
         "discord.js": "^11.3.0",
         "ffmpeg-binaries": "^3.2.2-3",
