@@ -25,7 +25,7 @@ bot.on('ready', function (evt) {
 });
 
 bot.on('error', function (evt) {
-	Logger.error("Error occured : " + evt.message);
+    Logger.error("Error occured : " + evt.message);
 });
 
 // Message parsing
@@ -34,12 +34,23 @@ bot.on('message', response => {
         var args = response.content.substr(1).split(' ');
         var cmd = args[0];
         args = args.splice(1);
-
         // Commands
         switch (cmd) {
             // Messages
             case 'help':
-                sendMessage(response, "\nEl Risitas Bot\n\nCommands:\n!ah, !atahoy, !banador, !chancla, !cocinero, !help, !issou, !ping, !risitas, !yatangaki");
+                const help = {
+                    "color": 16000000,
+                    "thumbnail": {
+                        "url": "https://www.joelcancela.fr/services/discord/risitas.png"
+                    },
+                    "fields": [
+                        {
+                            "name": "Usage",
+                            "value": "!ah\tHis friend's laugh (Denis)\n!atahoy\tAtahoy!\n!banador\tMi en bañador\n!chancla\tLa chancla!\n!cocinero\tEl Cocinero!\n!help\tYou'll get this help\n!issou\tEl Famoso\n!ping\tReally bad Joke\n!risitas\tA random laugh\n!yatangaki\t Yatangaki!"
+                        }
+                    ]
+                };
+                sendMessage(response, { embed:help });
                 break;
             case 'ping':
                 sendMessage(response, "Pong you racist");
