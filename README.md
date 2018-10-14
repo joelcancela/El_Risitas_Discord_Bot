@@ -15,7 +15,7 @@ npm install
 node bot
 ```
 
-* Invite the bot to your Discord (You must have the *Manage Server* permission) [here.](https://discordapp.com/oauth2/authorize?&client_id=411637700156850176&scope=bot&permissions=0)
+* Invite the bot to your Discord (You must have the *Manage Server* permission) [here.](https://discordapp.com/oauth2/authorize?&client_id=411637700156850176&scope=bot&permissions=36719616)
 
 * The bot can be hosted using docker :
 

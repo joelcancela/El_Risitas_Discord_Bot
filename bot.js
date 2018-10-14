@@ -38,19 +38,12 @@ bot.on('message', response => {
         switch (cmd) {
             // Messages
             case 'help':
-                const help = {
-                    "color": 16000000,
-                    "thumbnail": {
-                        "url": "https://www.joelcancela.fr/services/discord/risitas.png"
-                    },
-                    "fields": [
-                        {
-                            "name": "Usage",
-                            "value": "!ah\tHis friend's laugh (Denis)\n!atahoy\tAtahoy!\n!banador\tMi en bañador\n!chancla\tLa chancla!\n!cocinero\tEl Cocinero!\n!help\tYou'll get this help\n!issou\tEl Famoso\n!ping\tReally bad Joke\n!risitas\tA random laugh\n!yatangaki\t Yatangaki!"
-                        }
-                    ]
-                };
-                sendMessage(response, { embed:help });
+                const embed = new Discord.RichEmbed()
+                .setTitle("Usage")
+                .setDescription("!ah\tHis friend's laugh (Denis)\n!atahoy\tAtahoy!\n!banador\tMi en bañador\n!chancla\tLa chancla!\n!cocinero\tEl Cocinero!\n!help\tYou'll get this help\n!issou\tEl Famoso\n!ping\tReally bad Joke\n!risitas\tA random laugh\n!yatangaki\t Yatangaki!")
+                .setColor(0xFF0000)
+                .setThumbnail("https://www.joelcancela.fr/services/discord/risitas.png");
+                sendMessage(response, embed);
                 break;
             case 'ping':
                 sendMessage(response, "Pong you racist");
@@ -100,7 +93,7 @@ function playSound(responseEntity, soundfileRelativePath) {
 }
 
 function sendMessage(responseEntity, message) {
-    responseEntity.channel.send(message);
+    responseEntity.channel.send(message).catch(console.error);
 }
 
 function getRandomInt(min, max) {
