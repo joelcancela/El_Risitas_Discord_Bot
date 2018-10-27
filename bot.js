@@ -83,7 +83,6 @@ function playSound(responseEntity, soundfileRelativePath) {
             .then(connection => {
                 connection.playFile(soundfileRelativePath).on("end", () => {
                     connection.disconnect();
-                    responseEntity.member.voiceChannel.leave();
                 });
             })
             .catch(console.log);
