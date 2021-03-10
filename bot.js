@@ -63,7 +63,7 @@ bot.on('message', response => {
                 playSound(response, './sounds/chancla.mp3');
                 break;
             case 'cocinero':
-                playSound(response, './sounds/cocinerox.mp3');
+                playSound(response, './sounds/cocinero.mp3');
                 break;
             case 'issou':
                 playSound(response, './sounds/issou.mp3');
@@ -87,6 +87,7 @@ function playSound(responseEntity, soundfileRelativePath) {
                 dispatcher.on("finish", () => {
                     connection.disconnect();
                 });
+                dispatcher.destroy();
             })
             .catch(console.log);
     } else {
