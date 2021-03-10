@@ -81,10 +81,8 @@ function playSound(responseEntity, soundfileRelativePath) {
     if (responseEntity.member.voice.channel) {
         responseEntity.member.voice.channel.join()
             .then(connection => {
-                    connection.play(soundfileRelativePath).on("end", () => {
-                        setTimeout(() => {
-                            connection.disconnect();
-                        }, 2000)
+                    connection.play(soundfileRelativePath).on("finish", () => {
+                        connection.disconnect();
                     });
             })
             .catch(console.log);
