@@ -2,6 +2,7 @@
 var Discord = require('discord.js');
 var Logger = require('winston');
 var autJSON = require('./auth.json');
+const fs = require('fs');
 
 // Configure logger settings
 Logger.remove(Logger.transports.Console);
@@ -62,7 +63,7 @@ bot.on('message', response => {
                 playSound(response, './sounds/chancla.mp3');
                 break;
             case 'cocinero':
-                playSound(response, './sounds/cocinero.mp3');
+                playSound(response, './sounds/cocinerox.mp3');
                 break;
             case 'issou':
                 playSound(response, './sounds/issou.mp3');
@@ -81,9 +82,11 @@ function playSound(responseEntity, soundfileRelativePath) {
     if (responseEntity.member.voice.channel) {
         responseEntity.member.voice.channel.join()
             .then(connection => {
-                    connection.play(soundfileRelativePath).on("finish", () => {
-                        connection.disconnect();
-                    });
+                const dispatcher = connection.play(fs.createReadStream(soundfileRelativePath));
+                dispatcher.on('error', console.error);
+                dispatcher.on("finish", () => {
+                    connection.disconnect();
+                });
             })
             .catch(console.log);
     } else {
