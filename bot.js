@@ -87,7 +87,6 @@ function playSound(responseEntity, soundfileRelativePath) {
                 dispatcher.on("finish", () => {
                     connection.disconnect();
                 });
-                dispatcher.destroy();
             })
             .catch(console.log);
     } else {
