@@ -19,7 +19,7 @@ bot.login(autJSON.token);
 // At startup
 bot.on('ready', function (evt) {
     Logger.info('El Risitas ready to issou');// Log in console to be assure that it started
-    Logger.info('Serving in ' + bot.guilds.array().length + ' server(s).');// Number of servers that invited the bot
+    Logger.info('Serving in ' + bot.guilds.cache.array().length + ' server(s).');// Number of servers that invited the bot
     bot.user.setUsername("El Risitas");// Username of the bot
     bot.user.setPresence({ game: { name: "!issou", type: 0 } });// Its status
 });
@@ -38,11 +38,11 @@ bot.on('message', response => {
         switch (cmd) {
             // Messages
             case 'help':
-                const embed = new Discord.RichEmbed()
-                .setTitle("Usage")
-                .setDescription("!ah\tHis friend's laugh (Denis)\n!atahoy\tAtahoy!\n!banador\tMi en bañador\n!chancla\tLa chancla!\n!cocinero\tEl Cocinero!\n!help\tYou'll get this help\n!issou\tEl Famoso\n!ping\tReally bad Joke\n!risitas\tA random laugh\n!yatangaki\t Yatangaki!")
-                .setColor(0xFF0000)
-                .setThumbnail("https://api.joelcancela.fr/discord/risitas.png");
+                const embed = new Discord.MessageEmbed()
+                    .setTitle("Usage")
+                    .setDescription("!ah\tHis friend's laugh (Denis)\n!atahoy\tAtahoy!\n!banador\tMi en bañador\n!chancla\tLa chancla!\n!cocinero\tEl Cocinero!\n!help\tYou'll get this help\n!issou\tEl Famoso\n!ping\tReally bad Joke\n!risitas\tA random laugh\n!yatangaki\t Yatangaki!")
+                    .setColor(0xFF0000)
+                    .setThumbnail("https://api.joelcancela.fr/discord/risitas.png");
                 sendMessage(response, embed);
                 break;
             case 'ping':
@@ -78,12 +78,14 @@ bot.on('message', response => {
 });
 
 function playSound(responseEntity, soundfileRelativePath) {
-    if (responseEntity.member.voiceChannel) {
-        responseEntity.member.voiceChannel.join()
+    if (responseEntity.member.voice.channel) {
+        responseEntity.member.voice.channel.join()
             .then(connection => {
-                connection.playFile(soundfileRelativePath).on("end", () => {
-                    connection.disconnect();
-                });
+                    connection.play(soundfileRelativePath).on("end", () => {
+                        setTimeout(() => {
+                            connection.disconnect();
+                        }, 2000)
+                    });
             })
             .catch(console.log);
     } else {
