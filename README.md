@@ -12,7 +12,7 @@ Just another meme bot for Discord.
 
 ```node
 npm install
-node bot
+npm start
 ```
 
 * Invite the bot to your Discord (You must have the *Manage Server* permission) [here.](https://discordapp.com/oauth2/authorize?&client_id=411637700156850176&scope=bot&permissions=36719616)
