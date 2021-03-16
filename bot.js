@@ -1,7 +1,7 @@
 // Requirements
-var Discord = require('discord.js');
-var Logger = require('winston');
-var autJSON = require('./auth.json');
+const Discord = require('discord.js');
+const Logger = require('winston');
+const autJSON = require('./auth.json');
 const fs = require('fs');
 
 // Configure logger settings
@@ -12,17 +12,17 @@ Logger.add(Logger.transports.Console, {
 Logger.level = 'debug';
 
 // Initialize Discord Bot
-var bot = new Discord.Client();
+const bot = new Discord.Client();
 
 // Login and launch bot
 bot.login(autJSON.token);
 
 // At startup
-bot.on('ready', function (evt) {
+bot.on('ready', function () {
     Logger.info('El Risitas ready to issou');// Log in console to be assure that it started
     Logger.info('Serving in ' + bot.guilds.cache.array().length + ' server(s).');// Number of servers that invited the bot
     bot.user.setUsername("El Risitas");// Username of the bot
-    bot.user.setPresence({ game: { name: "!issou", type: 0 } });// Its status
+    bot.user.setActivity('!issou, !risitas', { type: 'PLAYING' });// Its status
 });
 
 bot.on('error', function (evt) {
@@ -83,19 +83,19 @@ function playSound(responseEntity, soundfileRelativePath) {
         responseEntity.member.voice.channel.join()
             .then(connection => {
                 const dispatcher = connection.play(fs.createReadStream(soundfileRelativePath));
-                dispatcher.on('error', console.error);
+                dispatcher.on('error', Logger.error);
                 dispatcher.on("finish", () => {
                     connection.disconnect();
                 });
             })
-            .catch(console.log);
+            .catch(Logger.error);
     } else {
         responseEntity.reply('You need to join a voice channel first!');
     }
 }
 
 function sendMessage(responseEntity, message) {
-    responseEntity.channel.send(message).catch(console.error);
+    responseEntity.channel.send(message).catch(Logger.error);
 }
 
 function getRandomInt(min, max) {
