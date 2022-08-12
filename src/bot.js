@@ -34,7 +34,7 @@ bot.on('message', (message) => {
         .setTitle('Usage')
         .setDescription('!ah\tHis friend\'s laugh (Denis)\n!atahoy\tAtahoy!\n!banador\tMi en bañador\n!chancla\tLa chancla!\n!cocinero\tEl Cocinero!\n!help\tYou\'ll get this help\n!issou\tEl Famoso\n!ping\tReally bad Joke\n!risitas\tA random laugh\n!yatangaki\t Yatangaki!')
         .setColor(0xFF0000)
-        .setThumbnail('https://api.joelcancela.fr/discord/risitas.png');
+        .setThumbnail('https://joelcancela.ddns.net/api/discord/risitas');
       sendMessage(message, embed);
       break;
     case 'ping':
